@@ -3,16 +3,16 @@ import { StyleSheet, View, Text, StatusBar, TextInput, Platform, Pressable, Scro
 import {MaterialIcons} from '@expo/vector-icons';
 import Slider from '@react-native-community/slider';
 
-// Para usar com API key local
+// Para usar com API key utilizando uma const
 //const API_KEY= ''
 const { GoogleGenerativeAI } = require("@google/generative-ai");
 // Access your API key as an environment variable (see "Set up your API key" above)
 const genAI = new GoogleGenerativeAI(process.env.API_KEY);
+//const genAI = new GoogleGenerativeAI(API_KEY);
 const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash"});
 
 
 const statusBarHeight = StatusBar.currentHeight
-//const KEY = 'Digite aqui a sua chave APIKey do OpenAI';
 
 export default function App() {
   const [city, setCity] = useState("");
@@ -35,7 +35,7 @@ export default function App() {
     const result = await model.generateContent(prompt);
     const response = await result.response;
     const text = response.text();
-    console.log(text);
+    //console.log(text);
     setTravel(text) 
     
     try {
